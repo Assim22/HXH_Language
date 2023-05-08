@@ -2,7 +2,7 @@
 This is a programming language design by GOLD Parser Builder 
 # PlC(PLD)
 This is a simple programming language using some Grammer. and you can see the 
-video on 
+video on [Youtube](https://youtu.be/BAX0mLW1v4w)
 # Using Condition
 ## if_else 
 ```
