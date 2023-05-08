@@ -1,0 +1,73 @@
+"Start Symbol"=<project>
+              
+!----------Terminal---------
+Id={letter}
+Digit={digit}
+!----------Rules------------
+<project>::=Go <content> End
+          
+<content>::= <statement>
+          |<statement><content>
+          
+<statement>::=<declaration_stm>
+            |<if_else_stm>
+            |<assign>
+            |<for_stm>
+            |<foreach_stm>
+            |<do_while>
+            |<while_stm>
+            
+            
+!-----Assign_statement-------------            
+<assign>::=<id>'='<expr>
+         
+<id>::= Id
+     
+<expr>::= <expr>'+'<term>
+       |<expr>'-'<term>
+       |<term>
+       
+<term>::=<term>'*'<factor>
+       |<term>'/'<factor>
+       |<term>'%'<factor>
+       |<factor>
+       
+<factor>::=<factor>'**'<e>
+         |<e>
+         
+<e>::='('<expr>')'
+       |<id>
+       |<digit>
+       
+<digit>::= Digit
+        
+!----------if_else-------
+
+<if_else_stm>::=if'('<condition>')' Go <statement> End '['else <statement>']'
+              
+<condition>::=<expr><operator><expr>
+            
+<operator>::='<'|'>'|'=='|'!='
+           
+!--------declaration----------
+
+<declaration_stm>::=<type><id>';'
+                  
+<type>::=int|double
+       
+<id>::=Id|<id>Id|<id>Digit
+     
+!---------While---------------
+<while_stm>::= while'('<for_stm>')'Go <statement>
+            
+!-----------Do_While--------
+<do_while>::=Do<statement> while'('<for_stm>')''#'
+               
+!-----------for---------------
+<for_stm>::=for'('<type><assign>'@'<condition>'@'<count>')'Go <statement> End
+          
+<count>::='--'<id>|<id>'--'|'++'<id>|<id>'++'|<assign>
+        
+!------------for_each---------
+        
+<foreach_stm>::=foreach'('<type><id> in <expr>')'<statement>';'
